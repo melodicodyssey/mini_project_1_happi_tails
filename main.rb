@@ -95,6 +95,6 @@ until message == "q"
 	when "6"
 		puts shelter.display_all_animals
 	when "7"
-
+		
 	end
 end

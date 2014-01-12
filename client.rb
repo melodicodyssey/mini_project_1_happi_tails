@@ -9,4 +9,8 @@ class Client
 		@pets = pets
 	end
 
+	def has_pets
+		!@pets.nil? ? true : false
+	end
+
 end
