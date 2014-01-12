@@ -2,15 +2,15 @@ class Client
 
 	attr_accessor :name, :age, :children, :pets
 
-	def initialize(name,age,children,pets)
+	def initialize(name,age,children)
 		@name = name
 		@age = age
 		@children = children
-		@pets = pets
+		@pets = []
 	end
 
 	def has_pets
-		!@pets.nil? ? true : false
+		@pets.length < 1 ? false : true
 	end
 
 end

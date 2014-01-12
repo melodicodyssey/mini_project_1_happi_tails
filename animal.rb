@@ -11,4 +11,8 @@ class Animal
 		@toys = toys
 	end
 
+	def has_owner?
+		self.owner.nil? ? false : true
+	end
+
 end
