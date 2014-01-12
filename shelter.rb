@@ -23,12 +23,14 @@ class Shelter
 
 	def display_all_clients
 		info = self.clients.map do |client|
-			puts "#{client.name}"
 			if client.has_pets
-				puts "pets:"
+				print "#{client.name}: #{client.age} y/o, #{client.children} children\n-pets:\n"
 				for pet in client.pets do
-					puts "#{pet.name} - #{pet.age} y/o #{pet.gender} #{pet.species}"
+					print "--#{pet.name} - #{pet.age} y/o #{pet.gender} #{pet.species}\n"
 				end
+				print "\n\n"
+			else
+				print "#{client.name}: #{client.age} y/o, #{client.children} children\n\n"
 			end
 		end
 		puts info
@@ -42,6 +44,7 @@ class Shelter
 	end
 
 	def display_homeless_animals
+		puts "Unadopted animals:"
 		info = self.animals.map do |animal|
 			if !animal.has_owner?
 				puts "#{animal.name} - #{animal.gender} #{animal.species}"
@@ -53,10 +56,11 @@ class Shelter
 		info = self.clients.map do |client|
 			if client.has_pets
 				puts "#{client.name}"
-				puts "\tpets:"
+				puts "-pets:"
 				for pet in client.pets
-					puts "\t  #{pet.name}"
+					puts "--#{pet.name} - #{pet.age} y/o #{pet.gender} #{pet.species}"
 				end
+				print "\n\n"
 			end
 		end
 		puts info

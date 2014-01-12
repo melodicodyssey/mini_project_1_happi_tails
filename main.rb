@@ -16,9 +16,10 @@ def menu()
 	puts "3. Process new animal"
 	puts "4. Remove animal"
 	puts "5. List all active clients"
-	puts "6. List all active animals"
-	puts "7. Process new adoption"
-	puts "8. Put client's pet up for adoption"
+	puts "6. List all animals"
+	puts "7. List all un-adopted animals"
+	puts "8. Process new adoption"
+	puts "9. Put client's pet up for adoption"
 	puts "q. Quit"
 	puts "\n\n"
 	print "--->  "
@@ -122,7 +123,13 @@ until message == "q"
 		gets.chomp
 
 	when "7"
+		puts shelter.display_all_animals
+		puts "\n(press any key to continue"
+		gets.chomp
+
+	when "8"
 		puts "Who is doing the adopting?"
+		puts "--------------------------"
 		puts shelter.display_all_clients
 		adopter = gets.chomp		
 		adopted = false
@@ -139,11 +146,16 @@ until message == "q"
 			end
 		end
 
-	when "8"
+	when "9"
 		given = false
 		until given == true
 			puts "Which client would like to put their pet up for adoption?"
+			puts "---------------------------------------------------------"
 			puts shelter.display_owners
+			if shelter.display_owners.nil?
+				puts "No owners in file\n--> Press any key to go back <--"
+				given = true
+			end
 			giver = gets.chomp
 			# if client name is valid
 			if shelter.list_clients.include?(giver)
