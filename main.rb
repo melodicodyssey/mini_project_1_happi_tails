@@ -30,13 +30,13 @@ until message == "q"
 	menu()
 	message = gets.chomp
 	case message
-	when "1"
+	when "1" # create new Client and push to shelter.clients
 		puts "Please enter client name" ; c_name = gets.chomp
 		puts "Please enter client age" ; c_age = gets.chomp
 		puts "Please enter number of children" ; c_children = gets.chomp
 		shelter.clients << Client.new(c_name,c_age,c_children)
 	
-	when "2"
+	when "2" # remove Client from shelter.clients
 		removed = false
 		until removed == true
 			shelter.display_all_clients
@@ -51,7 +51,7 @@ until message == "q"
 			end
 		end
 
-	when "3"
+	when "3" # create new Animal and push to shelter.animals (and optionally push to specified Client)
 		puts "Enter species of animal" ; a_species = gets.chomp.downcase
 		puts "Enter gender of animal: male/female" ; a_gender = gets.chomp.downcase
 		puts "Enter name of animal" ; a_name = gets.chomp
@@ -97,7 +97,7 @@ until message == "q"
 			shelter.animals.select{|animal| animal.name == a_name}[0].owner = shelter.clients.select{|client| client.name == a_owner}[0]
 		end
 
-	when "4"
+	when "4" # remove Animal from shelter.animals
 		removed = false
 		until removed == true
 			puts shelter.display_all_animals
@@ -112,22 +112,22 @@ until message == "q"
 			end
 		end
 
-	when "5"
+	when "5" # display shelter.client list
 		puts shelter.display_all_clients
-		puts "\n(press any key to continue"
+		puts "\n--> press any key to continue <--"
 		gets.chomp
 
-	when "6"
+	when "6" # display shelter.animals where @owner == nil
 		puts shelter.display_homeless_animals
-		puts "\n(press any key to continue"
+		puts "\n--> press any key to continue <--"
 		gets.chomp
 
-	when "7"
+	when "7" # display shelter.animals list
 		puts shelter.display_all_animals
-		puts "\n(press any key to continue"
+		puts "\n--> press any key to continue <--"
 		gets.chomp
 
-	when "8"
+	when "8" # push specified Animal to specified Client @pets array & set Animal's @owner
 		puts "Who is doing the adopting?"
 		puts "--------------------------"
 		puts shelter.display_all_clients
@@ -146,7 +146,7 @@ until message == "q"
 			end
 		end
 
-	when "9"
+	when "9" # remove Animal from Client's @pets array and set Animal's @owner = nil
 		given = false
 		until given == true
 			puts "Which client would like to put their pet up for adoption?"
